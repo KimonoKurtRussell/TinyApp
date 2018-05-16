@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <% include partials/_header.ejs %>
+   <body>
+      <h1><%= shortURL %> = <%= urls[shortURL] %> </h1>
+      <form method ="POST">
+      <label for = ""> Edit URL </label>
+      <input id="url" name="url" type="text" value=" " />
+      <input type="submit" value="Save Changes" />
+      <h2><a href= "/urls"> Main Index </a></h2>
+   </body>
+ </html>
