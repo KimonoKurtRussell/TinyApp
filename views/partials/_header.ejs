@@ -1,9 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <div style="margin-left:55px;">
-    <h1>TinyApp </h1>
-   </div>
-    <h2>URL Condenser</h2>
-  </head>
-</html>
+<div style="margin-left:460px;">
+  <h1> TinyApp </h1>
+</div>
+<div style="margin-left:400px;">
+  <h2>URL CONDENSER</h2>
+</div>
+<% if (loginAccount == undefined) { %>
+  <form method="POST" action="/login" />
+    <input id="username" type="text" name="username" placeholder="username">
+    <input type="submit" value="Submit">
+  </form>
+<% } else { %>
+  <p><%= loginAccount %></p>
+  <form method="POST" action="/logout">
+    <input type="submit" value="logout"/>
+  </form>
+<% } %>
