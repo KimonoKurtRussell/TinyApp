@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  </head>
-  <% include partials/_header.ejs %>
-   <body>
-      <div style ="font-size:10px; margin-left:350px;">
-      <h1><%= shortURL %> = <%= urls[shortURL] %> </h1>
-    </div>
-      <div style ="margin-left:360px;">
-      <form method ="POST">
-      <label for = ""> Edit URL </label>
-      <input id="url" name="url" type="text" value=" " />
-      <input type="submit" value="Save Changes" />
-      </div>
-       <div style ="margin-left:470px; font-size:10px;">
-      <h2><a href= "/urls">Back To Main Index </a></h2>
-      </div>
-   </body>
- </html>
+   <head>
+    </head>
+     <% include partials/_header.ejs %>
+      <body>
+       <div style ="font-size:10px; margin-left:350px;">
+       <h1><%= shortURL %> = <%= urls[shortURL] %> </h1>
+       </div>
+        <div style ="margin-left:360px;">
+         <form method ="POST">
+          <label for = ""> Edit URL urls show page</label>
+           <input id="url" name="url" type="text" value=" " />
+            <input type="submit" value="Save Changes" />
+        </div>
+         <div style ="margin-left:470px; font-size:10px;">
+          <h2><a href= "/urls">Back To Main Index </a></h2>
+        </div>
+      </body>
+</html>

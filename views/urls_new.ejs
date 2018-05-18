@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head></head>
+ <head></head>
   <body style="font-size:10px; padding:85px; margin-bottom:300px; margin-left: 350px">
     <% include partials/_header.ejs %>
-    <form action="/urls" method="POST" style="margin:10px">
+     <form action="/urls" method="POST" style="margin:10px">
       <label for="longURL">Enter a URL</label>
-      <input id="longURL" type="text" name="longURL" placeholder="http://" style="width: 300px; font-size:25px;">
-      <input type="submit" value="Submit">
-    </form>
+       <input id="longURL" type="text" name="longURL" placeholder="http://" style="width: 300px; font-size:25px;">
+        <input type="submit" value="Submit">
+         <div style ="margin-left:470px; font-size:10px;">
+          <h2><a href= "/urls">Back To Main Index </a></h2>
+         </div>
+     </form>
   </body>
 </html>
 
