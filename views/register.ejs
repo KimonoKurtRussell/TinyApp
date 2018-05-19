@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-    </head>
-      <body>
-        <form method="POST" action="/register">
-         <p>
-          <label>E-mail</label>
-           <input type="email" name="naming" />
-         </p>
-           <p>
-           <label>Password</label>
-            <input type="password" name="password" />
-          </p>
-          <p>
-           <input type="submit" name="register" value="Create Account"/>
-          </p>
-      </form>
-      </body>
-</html>
+ <!DOCTYPE html>
+ <html lang="en">
+   <head></head>
+   <body style="font-size:20px; padding:50px;">
+     <h1 align='center'> REGISTER </h1>
+     <form action="/register" method="POST" style="margin:150px;">
+       <label> Email: </label>
+       <input id='email' type="email" name="email" />
+       <label> Password: </label>
+       <input id='password' type="password" name="password" />
+       <input type='submit' value='Register' />
+     </form>
+   </body>
+ </html>
