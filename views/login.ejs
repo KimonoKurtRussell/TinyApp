@@ -1,12 +1,19 @@
-<!DOCTYPE html>
-<html lan="en">
- <head>
- </head>
-  <body>
-   <form method="POST" action="/login" />
-    <input id="email" type="email" name="email" placeholder="username/email">
-     <input id="password" type="password" name="password" placeholder="what's the password?">
-      <input type="submit" value="login">
-   </form>
-  </body>
+
+ <!DOCTYPE html>
+ <html lang='en'>
+   <head></head>
+   <body style="font-size:20px; padding:50px;">
+     <h1 align='center'> Login </h1>
+       <form method='POST' action='/login'>
+         <input label="email" type='email' name='email' />
+         <input type='password' name='password' />
+         <input type='submit' value='Login!' />
+       </form>
+       <form method='POST' action='/logout'>
+         <input type='submit' value='Logout'/>
+       </form>
+      <form action ='/register' >
+        <input type='submit' value='Register' />
+      </form>
+   </body>
  </html>
