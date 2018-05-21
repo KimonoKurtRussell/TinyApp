@@ -2,18 +2,19 @@
  <!DOCTYPE html>
  <html lang='en'>
    <head></head>
-   <body style="font-size:20px; padding:50px;">
-     <h1 align='center'> Login </h1>
-       <form method='POST' action='/login'>
-         <input label="email" type='email' name='email' />
-         <input type='password' name='password' />
-         <input type='submit' value='Login!' />
-       </form>
-       <form method='POST' action='/logout'>
-         <input type='submit' value='Logout'/>
+   <body bgcolor="#BBB9B9" style="font-size:30px; padding:30px;">
+     <h1 align="center">TINY APP </h1>
+     <h2 align='center'> Login </h2>
+       <form align="center" method='POST' action='/login'>
+         <input label="email" type='email' name='email' placeholder="email" />
+         <input type='password' name='password' placeholder="password" />
+         <input type='submit' value='Login' />
        </form>
       <form action ='/register' >
-        <input type='submit' value='Register' />
+        <h4 align="center"> Don't have an account? </h4>
+        <div class="wrapper" align="center">
+        <input align="center" type='submit' value='Register' />
+      </div>
       </form>
    </body>
  </html>
