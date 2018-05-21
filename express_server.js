@@ -9,13 +9,12 @@
   keys: ["encrypted"]
  }))
 
-
-
-
  const bodyParser = require("body-parser");
  app.use(bodyParser.urlencoded({ extended: true }));
 
  app.set("view engine", "ejs");
+
+ //Database for users and user specific urls
 
  var urlDatabase = {
    b2xVn2: {
@@ -45,6 +44,9 @@ app.get("/urls.json", (req, res) => {
    res.json(urlDatabase);
  });
 
+// Displaying main page with option to redirect to login+register if not logged in
+// all other pages have caveat to redirect to login if not logged in
+
 app.get("/urls", (req, res) => {
   if (!users[req.session.user_id]) {
     res.redirect("/login");
@@ -62,6 +64,8 @@ app.get("/urls", (req, res) => {
    }
 });
 
+//displaying a page to create a new tiny url
+
 app.get("/urls/new", (req, res) => {
   let templateVars = {
     users: users[req.session.user_id]
@@ -75,6 +79,8 @@ app.get("/urls/new", (req, res) => {
     res.redirect("/login");
 });
 
+//displays page with users urls
+
 app.get("/urls/:id", (req, res) => {
   let templateVars = {
     users: users[req.session.user_id],
@@ -84,10 +90,13 @@ app.get("/urls/:id", (req, res) => {
     res.render("urls_show", templateVars);
 });
 
+
+// ablity to post a new url to specific user
+
 app.post("/urls", (req, res) => {
   var longURL = req.body.longURL;
   if (!req.body.longURL) {
-    res.send(404).status("please enter a Url");
+    res.status(404).send("please enter a Url");
   } else {
     var shortURL = generateRandomString();
     urlDatabase[shortURL] = {
@@ -98,6 +107,7 @@ app.post("/urls", (req, res) => {
   }
 });
 
+
 app.get("/u/:shortURL", (req, res) => {
   let shortURL = req.params.shortURL;
   let longURL = urlDatabase[shortURL].url;
@@ -106,6 +116,8 @@ app.get("/u/:shortURL", (req, res) => {
     }
      res.redirect(longURL);
 });
+
+// displaying a specific url+tiny url to a specific user
 
 app.get("/urls/:shortURL", (req, res) => {
   let shortURL = req.params.shortURL;
@@ -121,6 +133,7 @@ app.get("/urls/:shortURL", (req, res) => {
     }
 });
 
+// abilty to edit a url to generate a new tiny url for a specific user
 
 app.post("/urls/:id", (req, res) => {
   let shortURL = req.params.id;
@@ -133,6 +146,8 @@ app.post("/urls/:id", (req, res) => {
    }
 });
 
+//ability to delete one url from users database
+
 app.post("/urls/:shortURL/delete", (req, res) => {
   let shortURL = req.params.shortURL;
   let urls = urlDatabase[shortURL].url;
@@ -142,15 +157,19 @@ app.post("/urls/:shortURL/delete", (req, res) => {
      res.redirect("/urls");
 });
 
+ //displays login page
+
  app.get("/login", (req, res) => {
    res.render("login");
  });
+
+//ability to login from login page
 
 app.post("/login", (req, res) => {
   var loggedEmail = req.body.email;
   var loggedPass = req.body.password;
     if (!loggedEmail || !loggedPass) {
-    res.send(403).status("Please enter a valid email or password");
+    res.status(403).send("Please enter a valid email or password");
       return;
    }
     for (let id in users) {
@@ -163,12 +182,17 @@ app.post("/login", (req, res) => {
      }
      }
     }
-    res.send(403).staus("Email and/or Password are not registered");
+    res.status(403).send("Email and/or Password are not registered");
 });
+
+ //displays login page
 
  app.get("/register", (req, res) => {
    res.render("register");
  });
+
+
+//ability ro create an account on TINYAPP
 
 app.post("/register", (req, res) => {
    var randomId = generateRandomString();
@@ -177,11 +201,11 @@ app.post("/register", (req, res) => {
    const cryptPassword = bcrypt.hashSync(userPassword, 10);
      for (let id in users) {
        if (users[id].email === userEmail) {
-       res.send(400).status("Email is taken please try another.");
+       res.status(400).send("Email is taken please try another.");
      return;
        }
          if (!userEmail || !userPassword) {
-         res.send(400).status("Please enter a valid email and password");
+         res.status(400).send("Please enter a valid email and password");
      return;
          }
        users[randomId] = {
@@ -194,8 +218,10 @@ app.post("/register", (req, res) => {
      res.redirect("/urls");
 });
 
+//ability to logout of tinyapp with redirection to login page
+
 app.post("/logout", (req, res) => {
-   res.session = ("session")
+   req.session = null
    res.redirect("/urls");
  });
 
@@ -203,6 +229,8 @@ app.listen(PORT, () => {
    console.log(`Example app listening on port ${PORT}!`);
  });
 
+
+//functions to create random string for a url and to push data into database
 
 
 function generateRandomString() {

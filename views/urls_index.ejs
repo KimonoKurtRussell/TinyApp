@@ -3,14 +3,19 @@
  <head>
    <title>TinyApp</title>
  </head>
- <body>
+ <body bgcolor="#BBB9B9">
    <header>
        <% include ./partials/_header %>
    </header>
-     <table>
+     <table align="center" cellspacing="20">
        <thead>
          <tr>
-           <th>URL</th>
+           <td align="center" colSpan='2'>
+            <h3> <a href='/urls/new'>TinyApp a URL</a> </h3>
+           </td>
+         </tr>
+         <tr>
+           <th>Full URL</th>
            <th>Short URL</th>
            <th</th>
          </tr>
@@ -21,7 +26,9 @@
          <td><%= urls[shortURL].url %></td>
            <td><%= shortURL %></td>
            <td>
-             <a href='/urls/<%= shortURL %>'> Edit </a>
+             <form method="GET" action="/urls/<%= shortURL %>/">
+             <input type="submit" value="Edit"/>
+           </form>
            </td>
            <td>
              <form method ='POST' action='/urls/<%= shortURL %>/delete'>
@@ -30,11 +37,7 @@
            </td>
          </tr>
          <% } %>
-         <tr>
-           <td colSpan='2'>
-             <a href='/urls/new'>Shorten URL</a>
-           </td>
-         </tr>
+
      </table>
  </body>
  </html>
